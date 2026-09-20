@@ -1,24 +1,44 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
+import {
+  Benefits,
+  ChallengePhases,
+  FAQ,
+  Footer,
+  Hero,
+  OfferSection,
+} from "@/components/landing";
+
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "Protocolo Calistenia Asiática | Desafio 28 Dias" },
+      {
+        name: "description",
+        content:
+          "Desafio de calistenia de 28 dias para homens 40+: treinos curtos, progressivos e pensados para preservar as articulações.",
+      },
+      { property: "og:title", content: "Protocolo Calistenia Asiática – Desafio 28 Dias" },
+      {
+        property: "og:description",
+        content: "Força natural e vitalidade após os 40 em apenas 15 a 20 minutos por dia.",
+      },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <main className="min-h-screen overflow-x-hidden bg-background">
+      <Hero />
+      <Benefits />
+      <ChallengePhases />
+      <OfferSection />
+      <FAQ />
+      <Footer />
+    </main>
   );
 }
