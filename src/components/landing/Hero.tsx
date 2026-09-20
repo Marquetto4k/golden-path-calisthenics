@@ -52,8 +52,14 @@ export function Hero() {
                 </span>
               ))}
             </div>
-            <Button asChild size="lg" className="mt-9 h-14 w-full bg-primary px-8 text-base font-bold uppercase text-primary-foreground shadow-gold hover:bg-gold-bright sm:w-auto">
-              <a href="#oferta">Quero iniciar o desafio <ArrowDown className="size-5" /></a>
+            <Button
+              asChild
+              size="lg"
+              className="mt-9 h-14 w-full bg-primary px-8 text-base font-bold uppercase text-primary-foreground shadow-gold hover:bg-gold-bright sm:w-auto"
+            >
+              <a href="#oferta">
+                Quero iniciar o desafio <ArrowDown className="size-5" />
+              </a>
             </Button>
             <p className="mt-4 flex items-center gap-2 text-xs text-muted-foreground">
               <ShieldCheck className="size-4 text-gold" /> Compra protegida · 7 dias de garantia
