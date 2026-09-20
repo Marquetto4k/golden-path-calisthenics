@@ -1,6 +1,7 @@
 import { Play, Volume2 } from "lucide-react";
 
 import vslImage from "@/assets/calistenia-detail.jpg";
+import { Button } from "@/components/ui/button";
 
 export function VSLPlayer() {
   return (
@@ -15,13 +16,15 @@ export function VSLPlayer() {
       />
       <div className="absolute inset-0 bg-vsl-overlay" />
       <div className="absolute inset-0 flex flex-col items-center justify-center px-5 text-center">
-        <button
+        <Button
           type="button"
+          variant="default"
+          size="icon"
           aria-label="Reproduzir apresentação"
-          className="group grid size-18 cursor-pointer place-items-center rounded-full border border-gold/70 bg-primary text-primary-foreground shadow-gold transition duration-300 hover:scale-105 hover:bg-gold-bright focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:size-22"
+          className="group size-18 rounded-full border border-gold/70 bg-primary text-primary-foreground shadow-gold transition duration-300 hover:scale-105 hover:bg-gold-bright sm:size-22"
         >
           <Play className="ml-1 size-7 fill-current sm:size-9" />
-        </button>
+        </Button>
         <p className="mt-5 font-display text-xl text-foreground sm:text-2xl">
           Assista antes de começar
         </p>
