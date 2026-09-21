@@ -5,7 +5,6 @@ import {
   Check,
   Clock3,
   Dumbbell,
-  Gauge,
   LockKeyhole,
   MonitorSmartphone,
   Sparkles,
@@ -25,24 +24,6 @@ import {
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 
-const methodPillars = [
-  {
-    icon: Gauge,
-    title: "Movimentos controlados",
-    text: "Você aprende a dominar cada repetição antes de aumentar o desafio.",
-  },
-  {
-    icon: CalendarDays,
-    title: "Progressão de 28 dias",
-    text: "Uma sequência simples que evolui junto com o seu corpo, sem saltos.",
-  },
-  {
-    icon: Clock3,
-    title: "15 a 20 minutos",
-    text: "Treinos objetivos que cabem na rotina e ajudam você a manter a constância.",
-  },
-];
-
 const programItems = [
   "Aplicativo com os 28 treinos organizados dia a dia",
   "Aulas guiadas para executar cada movimento com segurança",
@@ -56,22 +37,30 @@ const transformations = [
   {
     src: resultado01,
     alt: "Comparativo de evolução física masculina com redução abdominal",
-    title: "Mais firmeza e definição",
+    name: "Roberto",
+    result: "-3 kg e corpo firme em 21 dias",
+    text: "Eu não estava muito acima do peso, mas meu corpo tinha perdido a forma e eu me sentia mole, sem firmeza. Com a Calistenia Asiática, a ativação das fibras profundas mudou meu corpo. Em 21 dias, perdi 3 kg de gordura e a barriga começou a firmar. Voltei a me sentir bem comigo mesmo, com mais força e disposição.",
   },
   {
     src: resultado02,
     alt: "Comparativo de evolução física masculina com mais definição corporal",
-    title: "Força construída com constância",
+    name: "Carlos",
+    result: "-13 kg em 21 dias",
+    text: "Eu estava acabado, sem energia e com vergonha de tirar a camisa. Achava que ia precisar de horas na academia, mas a Calistenia Asiática mudou tudo. Recuperei minha força treinando dentro do meu próprio quarto. Hoje me sinto outro homem, mais confiante e 13 kg mais leve em apenas 3 semanas. Foi a melhor decisão que tomei!",
   },
   {
     src: resultado03,
     alt: "Comparativo lateral de evolução física masculina",
-    title: "Mudanças que aparecem no dia a dia",
+    name: "Sérgio",
+    result: "-8 kg em 21 dias, aos 58 anos",
+    text: "Depois dos 50, essa barriga não saía por nada e minhas costas viviam doendo. Os movimentos suaves da Calistenia Asiática foram a minha salvação. As dores diminuíram e eliminei 8 kg em 21 dias. Finalmente estou vendo a barriga secar de novo, sem forçar o corpo e sem impacto.",
   },
   {
     src: resultado04,
     alt: "Comparativo frontal de evolução física masculina",
-    title: "Um corpo mais ativo e confiante",
+    name: "Antônio",
+    result: "-4 kg em 14 dias",
+    text: "Sempre fui desconfiado com promessa rápida, mas as fotos não mentem. Em apenas duas semanas, a ativação das fibras profundas secou minha barriga de um jeito que abdominal nenhum tinha feito. Perdi 4 kg rápido e o inchaço sumiu. Se em 14 dias eu já estou assim, imagina no fim do protocolo!",
   },
 ];
 
@@ -128,19 +117,6 @@ const questions = [
 function SectionEyebrow({ children }: { children: string }) {
   return (
     <p className="text-xs font-extrabold uppercase tracking-[0.2em] text-blue-600">{children}</p>
-  );
-}
-
-function ScrollToOfferButton({ label = "Quero começar agora" }: { label?: string }) {
-  return (
-    <Button
-      asChild
-      className="h-auto min-h-14 w-full rounded-xl bg-blue-600 px-7 py-4 text-center text-sm font-extrabold uppercase text-white shadow-[0_16px_35px_rgba(37,99,235,0.24)] transition hover:-translate-y-0.5 hover:bg-blue-700 sm:w-auto sm:min-w-80"
-    >
-      <a href="#oferta">
-        {label} <ArrowRight className="size-5" />
-      </a>
-    </Button>
   );
 }
 
@@ -251,9 +227,9 @@ function TransformationsSection() {
         </div>
 
         <div className="mt-10 grid gap-5 sm:grid-cols-2">
-          {transformations.map(({ src, alt, title }) => (
+          {transformations.map(({ src, alt, name, result, text }) => (
             <figure
-              key={title}
+              key={name}
               className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_16px_45px_rgba(15,23,42,0.09)]"
             >
               <img
@@ -264,15 +240,24 @@ function TransformationsSection() {
                 width={1000}
                 height={823}
               />
-              <figcaption className="flex items-center gap-2 border-t border-slate-100 px-5 py-4 text-sm font-extrabold text-slate-800">
-                <BadgeCheck className="size-5 shrink-0 text-blue-600" /> {title}
+              <figcaption className="border-t border-slate-100 px-5 py-5 text-left">
+                <div className="flex items-start gap-3">
+                  <BadgeCheck className="mt-0.5 size-6 shrink-0 text-blue-600" />
+                  <div>
+                    <p className="text-lg font-extrabold text-slate-950">{name}</p>
+                    <p className="text-sm font-extrabold text-blue-600">{result}</p>
+                  </div>
+                </div>
+                <blockquote className="mt-4 text-sm leading-relaxed text-slate-600">
+                  “{text}”
+                </blockquote>
               </figcaption>
             </figure>
           ))}
         </div>
         <p className="mx-auto mt-5 max-w-2xl text-center text-xs leading-relaxed text-slate-500">
-          Resultados individuais variam conforme ponto de partida, execução, alimentação, frequência
-          e outros fatores pessoais.
+          Depoimentos e imagens enviados para esta página. Resultados individuais variam conforme
+          ponto de partida, execução, alimentação, frequência e outros fatores pessoais.
         </p>
       </div>
     </section>
@@ -331,23 +316,27 @@ export function SimplifiedContent() {
               />
             </div>
             <div>
-              <SectionEyebrow>O mecanismo do protocolo</SectionEyebrow>
+              <SectionEyebrow>Força e vitalidade masculina</SectionEyebrow>
               <h2 className="mt-4 text-3xl font-black leading-tight text-slate-950 sm:text-4xl lg:text-5xl">
-                A Calistenia Asiática reacende sua força, sua energia e sua confiança.
+                Seu corpo ainda sabe responder ao estímulo certo.
               </h2>
               <p className="mt-5 text-base leading-relaxed text-slate-600 sm:text-lg">
-                Seu corpo não precisa de um treino impossível. Ele precisa do estímulo certo, na
-                ordem certa e com uma progressão que você consiga manter.
+                Os movimentos controlados da Calistenia Asiática trabalham grandes grupos musculares
+                e desafiam o corpo como um treino de força, usando apenas o próprio peso.
               </p>
               <div className="mt-6 rounded-2xl border border-blue-100 bg-blue-50 p-5 text-sm leading-relaxed text-slate-700 sm:text-base">
-                <strong className="text-blue-700">Sem horas de academia ou aparelhos caros.</strong>{" "}
-                O método combina movimentos com o peso do corpo, controle da execução e uma
-                sequência prática de 28 dias.
+                <strong className="text-blue-700">
+                  O treino de força pode gerar uma elevação temporária da testosterona após o
+                  exercício.
+                </strong>{" "}
+                Essa resposta varia conforme intensidade, condicionamento, sono, alimentação e saúde
+                individual. O foco do protocolo é construir força, firmeza e disposição com
+                constância — sem promessas hormonais irreais.
               </div>
               <ul className="mt-6 space-y-3 text-sm font-semibold text-slate-700">
                 {[
-                  "Comece no seu nível atual",
-                  "Avance sem pular etapas",
+                  "Ative grandes grupos musculares",
+                  "Desenvolva força e controle corporal",
                   "Construa uma rotina que cabe no seu dia",
                 ].map((item) => (
                   <li key={item} className="flex items-center gap-3">
@@ -358,30 +347,6 @@ export function SimplifiedContent() {
                   </li>
                 ))}
               </ul>
-            </div>
-          </div>
-
-          <div className="mt-16 text-center sm:mt-20">
-            <SectionEyebrow>Simples de entender. Possível de seguir.</SectionEyebrow>
-            <h3 className="mx-auto mt-3 max-w-2xl text-3xl font-black text-slate-950 sm:text-4xl">
-              Um caminho claro do primeiro ao último treino
-            </h3>
-            <div className="mt-9 grid gap-4 md:grid-cols-3">
-              {methodPillars.map(({ icon: Icon, title, text }) => (
-                <article
-                  key={title}
-                  className="rounded-2xl border border-slate-200 bg-slate-50 p-6 text-left"
-                >
-                  <div className="grid size-11 place-items-center rounded-xl bg-blue-100 text-blue-700">
-                    <Icon className="size-6" />
-                  </div>
-                  <h4 className="mt-5 text-lg font-extrabold text-slate-950">{title}</h4>
-                  <p className="mt-2 text-sm leading-relaxed text-slate-600">{text}</p>
-                </article>
-              ))}
-            </div>
-            <div className="mt-9 flex justify-center">
-              <ScrollToOfferButton />
             </div>
           </div>
         </div>

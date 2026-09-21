@@ -11,7 +11,8 @@ export function Hero() {
           Protocolo Calistenia Asiática · Desafio 28 Dias
         </p>
         <h1 className="mx-auto mt-4 max-w-4xl text-4xl font-black leading-[1.05] sm:text-5xl lg:text-6xl">
-          Recupere sua força e firmeza depois dos 40 com a Calistenia Asiática
+          Recupere sua <span className="text-blue-600">força e firmeza</span> depois dos 40 com a{" "}
+          <span className="text-orange-500">Calistenia Asiática</span>
         </h1>
         <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg">
           Acesse pelo aplicativo treinos progressivos de 15 a 20 minutos para fazer em casa, mesmo

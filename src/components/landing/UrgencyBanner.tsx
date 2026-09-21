@@ -51,7 +51,7 @@ export function UrgencyBanner() {
 
   return (
     <aside
-      className="bg-gradient-to-r from-orange-600 via-orange-500 to-orange-600 px-4 py-3 text-white"
+      className="bg-gradient-to-r from-red-800 via-red-600 to-red-800 px-4 py-3 text-white"
       aria-label="Prazo da oferta promocional"
     >
       <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-center gap-x-3 gap-y-2 text-center">
@@ -61,7 +61,7 @@ export function UrgencyBanner() {
         </p>
         {!offerExpired && (
           <time
-            className="min-w-[4.75rem] rounded-md bg-white px-2.5 py-1 text-base font-black tabular-nums text-orange-600 shadow-sm"
+            className="min-w-[4.75rem] rounded-md bg-white px-2.5 py-1 text-base font-black tabular-nums text-red-700 shadow-sm"
             dateTime={`PT${secondsLeft}S`}
             aria-live="off"
             aria-label={`${Math.floor(secondsLeft / 60)} minutos e ${secondsLeft % 60} segundos restantes`}
