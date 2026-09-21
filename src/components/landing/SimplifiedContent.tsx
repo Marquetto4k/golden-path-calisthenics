@@ -163,6 +163,13 @@ function ProgramPreview() {
 }
 
 function OfferCard() {
+  const discountDate = new Intl.DateTimeFormat("pt-BR", {
+    timeZone: "America/Sao_Paulo",
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+  }).format(new Date());
+
   return (
     <div
       id="oferta"
@@ -177,11 +184,17 @@ function OfferCard() {
           Protocolo Calistenia Asiática
         </h3>
         <p className="mt-1 text-sm font-bold text-blue-600">Desafio 28 Dias</p>
-        <div className="mt-7 flex items-start justify-center text-blue-600">
+        <p className="mt-7 text-sm font-bold text-slate-500">
+          De <span className="line-through">R$ 197,00</span> por
+        </p>
+        <div className="mt-2 flex items-start justify-center text-blue-600">
           <span className="mt-2 text-xl font-black">R$</span>
           <span className="text-7xl font-black leading-none">37</span>
           <span className="mt-2 text-lg font-black">,00</span>
         </div>
+        <p className="mt-3 text-sm font-extrabold text-orange-600">
+          Desconto válido apenas hoje, {discountDate}
+        </p>
         <p className="mt-2 text-sm text-slate-500">Pagamento único · Sem mensalidade</p>
         <Button
           asChild
