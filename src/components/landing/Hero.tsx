@@ -16,8 +16,8 @@ export function Hero({ showCallToAction = false }: { showCallToAction?: boolean 
           <span className="text-orange-500">Calistenia Asiática</span>
         </h1>
         <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg">
-          Acesse pelo aplicativo treinos progressivos de 15 a 20 minutos para fazer em casa, mesmo
-          que você esteja parado ou nunca tenha praticado calistenia.
+          Você se olha no espelho e já não reconhece o corpo forte que tinha antes? A idade pode
+          não ser a verdadeira culpada.
         </p>
 
         <div className="mt-8 sm:mt-10">
