@@ -9,7 +9,7 @@ export function UrgencyBanner() {
       <div className="mx-auto flex max-w-5xl items-center justify-center gap-2.5 text-center">
         <Flame className="size-5 shrink-0 text-red-100" aria-hidden="true" />
         <p className="text-xs font-extrabold uppercase tracking-[0.08em] sm:text-sm sm:tracking-[0.12em]">
-          Condição especial de lançamento disponível agora
+          Restam apenas 4 vagas nesta condição especial
         </p>
       </div>
     </aside>
