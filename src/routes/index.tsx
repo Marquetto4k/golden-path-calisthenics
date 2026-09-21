@@ -1,6 +1,96 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
 
 import { Footer, Hero, SimplifiedContent, UrgencyBanner } from "@/components/landing";
+
+const CONTENT_DELAY_SECONDS = 5 * 60 + 40;
+const CONTENT_UNLOCKED_KEY = "calistenia-content-unlocked-340";
+
+interface VturbPlayerInstance {
+  on: (event: "timeupdate", callback: () => void) => void;
+  off?: (event: "timeupdate", callback: () => void) => void;
+  smartAutoPlay?: boolean;
+  video?: {
+    currentTime?: number;
+  };
+}
+
+interface VturbSmartPlayer {
+  instances?: VturbPlayerInstance[];
+}
+
+function getVturbPlayer() {
+  return (window as Window & { smartplayer?: VturbSmartPlayer }).smartplayer?.instances?.[0];
+}
+
+function useDelayedContent() {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    let cancelled = false;
+    let unlocked = false;
+    let retryId: number | undefined;
+    let player: VturbPlayerInstance | undefined;
+
+    const unlockContent = () => {
+      if (cancelled || unlocked) return;
+
+      unlocked = true;
+      setIsVisible(true);
+      try {
+        window.localStorage.setItem(CONTENT_UNLOCKED_KEY, "true");
+      } catch {
+        // The page still unlocks when browser storage is unavailable.
+      }
+    };
+
+    try {
+      if (window.localStorage.getItem(CONTENT_UNLOCKED_KEY) === "true") {
+        unlockContent();
+        return;
+      }
+    } catch {
+      // Continue by watching the player when browser storage is unavailable.
+    }
+
+    const handleTimeUpdate = () => {
+      if (!player || player.smartAutoPlay) return;
+
+      const currentTime = Number(player.video?.currentTime ?? 0);
+      if (currentTime < CONTENT_DELAY_SECONDS) return;
+
+      player.off?.("timeupdate", handleTimeUpdate);
+      unlockContent();
+    };
+
+    let attempts = 0;
+    const connectToPlayer = () => {
+      if (cancelled) return;
+
+      player = getVturbPlayer();
+      if (player) {
+        player.on("timeupdate", handleTimeUpdate);
+        handleTimeUpdate();
+        return;
+      }
+
+      attempts += 1;
+      if (attempts < 60) {
+        retryId = window.setTimeout(connectToPlayer, 1000);
+      }
+    };
+
+    connectToPlayer();
+
+    return () => {
+      cancelled = true;
+      if (retryId !== undefined) window.clearTimeout(retryId);
+      player?.off?.("timeupdate", handleTimeUpdate);
+    };
+  }, []);
+
+  return isVisible;
+}
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -24,12 +114,18 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
+  const showDelayedContent = useDelayedContent();
+
   return (
     <main className="min-h-screen overflow-x-hidden bg-background">
       <UrgencyBanner />
-      <Hero />
-      <SimplifiedContent />
-      <Footer />
+      <Hero showCallToAction={showDelayedContent} />
+      {showDelayedContent && (
+        <div className="animate-in fade-in slide-in-from-bottom-4 duration-700">
+          <SimplifiedContent />
+          <Footer />
+        </div>
+      )}
     </main>
   );
 }

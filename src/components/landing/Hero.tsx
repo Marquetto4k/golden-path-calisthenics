@@ -3,7 +3,7 @@ import { ArrowDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { VSLPlayer } from "./VSLPlayer";
 
-export function Hero() {
+export function Hero({ showCallToAction = true }: { showCallToAction?: boolean }) {
   return (
     <header className="bg-gradient-to-b from-blue-50 via-white to-white px-5 pb-16 pt-10 text-slate-950 sm:px-8 sm:pb-20 sm:pt-14">
       <div className="mx-auto max-w-5xl text-center">
@@ -23,15 +23,19 @@ export function Hero() {
           <VSLPlayer />
         </div>
 
-        <Button
-          asChild
-          size="lg"
-          className="mt-7 h-auto min-h-14 w-full rounded-xl bg-blue-600 px-8 py-4 text-sm font-extrabold uppercase text-white shadow-[0_16px_35px_rgba(37,99,235,0.24)] transition hover:-translate-y-0.5 hover:bg-blue-700 sm:w-auto sm:min-w-80 sm:text-base"
-        >
-          <a href="#oferta">
-            Quero começar agora <ArrowDown className="size-5" />
-          </a>
-        </Button>
+        {showCallToAction && (
+          <div className="animate-in fade-in slide-in-from-bottom-2 duration-700">
+            <Button
+              asChild
+              size="lg"
+              className="mt-7 h-auto min-h-14 w-full rounded-xl bg-blue-600 px-8 py-4 text-sm font-extrabold uppercase text-white shadow-[0_16px_35px_rgba(37,99,235,0.24)] transition hover:-translate-y-0.5 hover:bg-blue-700 sm:w-auto sm:min-w-80 sm:text-base"
+            >
+              <a href="#oferta">
+                Quero começar agora <ArrowDown className="size-5" />
+              </a>
+            </Button>
+          </div>
+        )}
       </div>
     </header>
   );
