@@ -3,7 +3,7 @@ import { ArrowDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { VSLPlayer } from "./VSLPlayer";
 
-export function Hero({ showCallToAction = true }: { showCallToAction?: boolean }) {
+export function Hero({ showCallToAction = false }: { showCallToAction?: boolean }) {
   return (
     <header className="bg-gradient-to-b from-blue-50 via-white to-white px-5 pb-16 pt-10 text-slate-950 sm:px-8 sm:pb-20 sm:pt-14">
       <div className="mx-auto max-w-5xl text-center">

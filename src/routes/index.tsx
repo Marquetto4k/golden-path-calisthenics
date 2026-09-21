@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { Footer, Hero, SimplifiedContent, UrgencyBanner } from "@/components/landing";
 
 const CONTENT_DELAY_SECONDS = 5 * 60 + 40;
-const CONTENT_UNLOCKED_KEY = "calistenia-content-unlocked-340";
 
 interface VturbPlayerInstance {
   on: (event: "timeupdate", callback: () => void) => void;
@@ -37,21 +36,7 @@ function useDelayedContent() {
 
       unlocked = true;
       setIsVisible(true);
-      try {
-        window.localStorage.setItem(CONTENT_UNLOCKED_KEY, "true");
-      } catch {
-        // The page still unlocks when browser storage is unavailable.
-      }
     };
-
-    try {
-      if (window.localStorage.getItem(CONTENT_UNLOCKED_KEY) === "true") {
-        unlockContent();
-        return;
-      }
-    } catch {
-      // Continue by watching the player when browser storage is unavailable.
-    }
 
     const handleTimeUpdate = () => {
       if (!player || player.smartAutoPlay) return;
