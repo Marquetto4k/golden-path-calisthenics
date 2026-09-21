@@ -8,7 +8,6 @@ import {
   Gauge,
   LockKeyhole,
   MonitorSmartphone,
-  ShieldCheck,
   Sparkles,
   StretchHorizontal,
 } from "lucide-react";
@@ -192,11 +191,11 @@ function ProgramPreview() {
   );
 }
 
-function OfferCard({ compact = false }: { compact?: boolean }) {
+function OfferCard() {
   return (
     <div
-      id={compact ? undefined : "oferta"}
-      className={`mx-auto w-full max-w-3xl overflow-hidden rounded-3xl border border-blue-100 bg-white shadow-[0_28px_80px_rgba(15,23,42,0.12)] ${compact ? "mt-12" : "mt-16"}`}
+      id="oferta"
+      className="mx-auto mt-12 w-full max-w-3xl scroll-mt-6 overflow-hidden rounded-3xl border border-blue-100 bg-white shadow-[0_28px_80px_rgba(15,23,42,0.12)]"
     >
       <div className="bg-gradient-to-r from-orange-500 to-orange-400 px-5 py-3 text-center text-xs font-extrabold uppercase tracking-[0.16em] text-white">
         Condição especial de lançamento
@@ -228,10 +227,96 @@ function OfferCard({ compact = false }: { compact?: boolean }) {
   );
 }
 
+function TransformationsSection() {
+  return (
+    <section
+      id="depoimentos"
+      className="border-y border-slate-200 bg-[#f4f8ff] px-5 py-16 sm:px-8 sm:py-20"
+    >
+      <div className="mx-auto max-w-5xl">
+        <div className="mx-auto max-w-3xl text-center">
+          <div className="mb-3 flex justify-center gap-1 text-orange-400" aria-hidden="true">
+            {Array.from({ length: 5 }).map((_, index) => (
+              <span key={index}>★</span>
+            ))}
+          </div>
+          <SectionEyebrow>O poder da constância</SectionEyebrow>
+          <h2 className="mt-4 text-3xl font-black leading-tight text-slate-950 sm:text-5xl">
+            Evoluções que inspiram a começar
+          </h2>
+          <p className="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+            Quando existe um plano simples e uma rotina possível, cada treino concluído se torna
+            parte de uma mudança maior.
+          </p>
+        </div>
+
+        <div className="mt-10 grid gap-5 sm:grid-cols-2">
+          {transformations.map(({ src, alt, title }) => (
+            <figure
+              key={title}
+              className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_16px_45px_rgba(15,23,42,0.09)]"
+            >
+              <img
+                src={src}
+                alt={alt}
+                className="h-auto w-full"
+                loading="lazy"
+                width={1000}
+                height={823}
+              />
+              <figcaption className="flex items-center gap-2 border-t border-slate-100 px-5 py-4 text-sm font-extrabold text-slate-800">
+                <BadgeCheck className="size-5 shrink-0 text-blue-600" /> {title}
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+        <p className="mx-auto mt-5 max-w-2xl text-center text-xs leading-relaxed text-slate-500">
+          Resultados individuais variam conforme ponto de partida, execução, alimentação, frequência
+          e outros fatores pessoais.
+        </p>
+      </div>
+    </section>
+  );
+}
+
+function BonusesBlock() {
+  return (
+    <div className="mt-16 border-t border-blue-100 pt-16">
+      <div className="mx-auto max-w-3xl text-center">
+        <SectionEyebrow>Mais do que os 28 treinos</SectionEyebrow>
+        <h3 className="mt-4 text-3xl font-black text-slate-950 sm:text-4xl">
+          Você também recebe 4 bônus exclusivos
+        </h3>
+      </div>
+      <div className="mt-9 grid gap-4 sm:grid-cols-2">
+        {bonuses.map(({ icon: Icon, title, text }, index) => (
+          <article
+            key={title}
+            className="flex gap-4 rounded-2xl border border-blue-100 bg-white p-5 shadow-sm sm:p-6"
+          >
+            <div className="grid size-11 shrink-0 place-items-center rounded-xl bg-blue-100 text-blue-700">
+              <Icon className="size-6" />
+            </div>
+            <div>
+              <p className="text-xs font-black uppercase tracking-[0.15em] text-orange-500">
+                Bônus {index + 1}
+              </p>
+              <h4 className="mt-1 text-lg font-extrabold text-slate-950">{title}</h4>
+              <p className="mt-2 text-sm leading-relaxed text-slate-600">{text}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export function SimplifiedContent() {
   return (
     <div className="bg-white font-sans text-slate-900">
-      <section className="px-5 pb-20 pt-28 sm:px-8 sm:pb-24 sm:pt-32">
+      <TransformationsSection />
+
+      <section className="px-5 py-20 sm:px-8 sm:py-24">
         <div className="mx-auto max-w-5xl">
           <div className="grid items-center gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:gap-16">
             <div className="relative">
@@ -338,84 +423,16 @@ export function SimplifiedContent() {
             </div>
           </div>
 
+          <BonusesBlock />
           <OfferCard />
         </div>
       </section>
 
       <section className="px-5 py-20 sm:px-8 sm:py-24">
         <div className="mx-auto max-w-5xl">
-          <div className="mx-auto max-w-3xl text-center">
-            <div className="mb-3 flex justify-center gap-1 text-orange-400" aria-hidden="true">
-              {Array.from({ length: 5 }).map((_, index) => (
-                <span key={index}>★</span>
-              ))}
-            </div>
-            <SectionEyebrow>O poder da constância</SectionEyebrow>
-            <h2 className="mt-4 text-3xl font-black leading-tight text-slate-950 sm:text-5xl">
-              Evoluções que inspiram a começar
-            </h2>
-            <p className="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
-              Quando existe um plano simples e uma rotina possível, cada treino concluído se torna
-              parte de uma mudança maior.
-            </p>
-          </div>
-
-          <div className="mt-12 grid gap-5 sm:grid-cols-2">
-            {transformations.map(({ src, alt, title }) => (
-              <figure
-                key={title}
-                className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_16px_45px_rgba(15,23,42,0.09)]"
-              >
-                <img
-                  src={src}
-                  alt={alt}
-                  className="h-auto w-full"
-                  loading="lazy"
-                  width={1000}
-                  height={823}
-                />
-                <figcaption className="flex items-center gap-2 border-t border-slate-100 px-5 py-4 text-sm font-extrabold text-slate-800">
-                  <BadgeCheck className="size-5 shrink-0 text-blue-600" /> {title}
-                </figcaption>
-              </figure>
-            ))}
-          </div>
-          <p className="mx-auto mt-5 max-w-2xl text-center text-xs leading-relaxed text-slate-500">
-            Resultados individuais variam conforme ponto de partida, execução, alimentação,
-            frequência e outros fatores pessoais.
-          </p>
-
-          <div className="mt-20 border-t border-slate-200 pt-20">
-            <div className="mx-auto max-w-3xl text-center">
-              <SectionEyebrow>Mais do que os 28 treinos</SectionEyebrow>
-              <h3 className="mt-4 text-3xl font-black text-slate-950 sm:text-4xl">
-                Você também recebe 4 bônus exclusivos
-              </h3>
-            </div>
-            <div className="mt-10 grid gap-4 sm:grid-cols-2">
-              {bonuses.map(({ icon: Icon, title, text }, index) => (
-                <article
-                  key={title}
-                  className="flex gap-4 rounded-2xl border border-slate-200 bg-slate-50 p-5 sm:p-6"
-                >
-                  <div className="grid size-11 shrink-0 place-items-center rounded-xl bg-blue-100 text-blue-700">
-                    <Icon className="size-6" />
-                  </div>
-                  <div>
-                    <p className="text-xs font-black uppercase tracking-[0.15em] text-orange-500">
-                      Bônus {index + 1}
-                    </p>
-                    <h4 className="mt-1 text-lg font-extrabold text-slate-950">{title}</h4>
-                    <p className="mt-2 text-sm leading-relaxed text-slate-600">{text}</p>
-                  </div>
-                </article>
-              ))}
-            </div>
-          </div>
-
           <div
             id="garantia"
-            className="mt-20 overflow-hidden rounded-3xl bg-slate-950 px-6 py-10 text-white sm:px-10 sm:py-12"
+            className="overflow-hidden rounded-3xl bg-slate-950 px-6 py-10 text-white sm:px-10 sm:py-12"
           >
             <div className="grid items-center gap-8 md:grid-cols-[auto_1fr] md:gap-10">
               <div className="mx-auto grid size-28 place-items-center rounded-full border-4 border-orange-300 bg-orange-400 text-center text-slate-950 shadow-[0_0_0_8px_rgba(251,146,60,0.12)] md:mx-0">
@@ -462,20 +479,6 @@ export function SimplifiedContent() {
                 </AccordionItem>
               ))}
             </Accordion>
-          </div>
-
-          <OfferCard compact />
-
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs font-semibold text-slate-500">
-            <span className="flex items-center gap-1.5">
-              <ShieldCheck className="size-4 text-emerald-600" /> 7 dias de garantia
-            </span>
-            <span className="flex items-center gap-1.5">
-              <LockKeyhole className="size-4 text-emerald-600" /> Pagamento protegido
-            </span>
-            <span className="flex items-center gap-1.5">
-              <MonitorSmartphone className="size-4 text-emerald-600" /> Acesso online
-            </span>
           </div>
         </div>
       </section>
