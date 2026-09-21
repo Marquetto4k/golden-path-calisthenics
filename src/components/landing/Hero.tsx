@@ -14,8 +14,8 @@ export function Hero() {
           Recupere sua força e firmeza depois dos 40 com a Calistenia Asiática
         </h1>
         <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg">
-          Treinos progressivos de 15 a 20 minutos para fazer em casa, mesmo que você esteja parado
-          ou nunca tenha praticado calistenia.
+          Acesse pelo aplicativo treinos progressivos de 15 a 20 minutos para fazer em casa, mesmo
+          que você esteja parado ou nunca tenha praticado calistenia.
         </p>
 
         <div className="mt-8 sm:mt-10">

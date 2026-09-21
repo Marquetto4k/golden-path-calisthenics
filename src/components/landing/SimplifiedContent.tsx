@@ -44,7 +44,7 @@ const methodPillars = [
 ];
 
 const programItems = [
-  "Desafio completo com 28 treinos organizados dia a dia",
+  "Aplicativo com os 28 treinos organizados dia a dia",
   "Aulas guiadas para executar cada movimento com segurança",
   "Progressões e adaptações pensadas para quem está começando",
   "Calendário visual para acompanhar sua evolução",
@@ -117,7 +117,7 @@ const questions = [
   ],
   [
     "Como recebo o acesso?",
-    "Após a confirmação do pagamento, você recebe as instruções para acessar todo o conteúdo online.",
+    "Após a confirmação do pagamento, você recebe as instruções para entrar no aplicativo e acessar todo o protocolo.",
   ],
   [
     "E se o protocolo não fizer sentido para mim?",
@@ -201,7 +201,7 @@ function OfferCard() {
         Condição especial de lançamento
       </div>
       <div className="px-6 py-8 text-center sm:px-10 sm:py-10">
-        <p className="text-sm font-bold text-slate-500">Acesso completo e imediato</p>
+        <p className="text-sm font-bold text-slate-500">Acesso completo e imediato ao aplicativo</p>
         <h3 className="mt-2 text-2xl font-black text-slate-950 sm:text-3xl">
           Protocolo Calistenia Asiática
         </h3>
@@ -390,13 +390,13 @@ export function SimplifiedContent() {
       <section id="conteudo" className="bg-[#f4f8ff] px-5 py-20 sm:px-8 sm:py-24">
         <div className="mx-auto max-w-5xl">
           <div className="mx-auto max-w-3xl text-center">
-            <SectionEyebrow>O que você vai receber</SectionEyebrow>
+            <SectionEyebrow>Dentro do aplicativo</SectionEyebrow>
             <h2 className="mt-4 text-3xl font-black leading-tight text-slate-950 sm:text-5xl">
-              Seu plano de 28 dias já está pronto.
+              Seu protocolo de 28 dias organizado em um só lugar.
             </h2>
             <p className="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
-              Abra, acompanhe o treino do dia e siga o passo a passo. Sem precisar pesquisar
-              exercícios ou montar uma rotina sozinho.
+              Entre no aplicativo, acompanhe o treino do dia e siga o passo a passo. Sem precisar
+              pesquisar exercícios ou montar uma rotina sozinho.
             </p>
           </div>
 
