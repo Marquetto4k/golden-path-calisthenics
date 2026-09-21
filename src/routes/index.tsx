@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 
-import { Footer, Hero, SimplifiedContent, UrgencyBanner } from "@/components/landing";
+import { Hero, SimplifiedContent, UrgencyBanner } from "@/components/landing";
 
 const CONTENT_DELAY_SECONDS = 5 * 60 + 40;
 
@@ -108,7 +108,6 @@ function Index() {
       {showDelayedContent && (
         <div className="animate-in fade-in slide-in-from-bottom-4 duration-700">
           <SimplifiedContent />
-          <Footer />
         </div>
       )}
     </main>
