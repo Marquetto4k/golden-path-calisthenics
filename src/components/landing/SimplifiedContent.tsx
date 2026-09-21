@@ -22,6 +22,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
+import { CHECKOUT_FALLBACK_URL, CHECKOUT_URL } from "@/config/checkout";
 
 const programItems = [
   "Aplicativo com os 28 treinos organizados dia a dia",
@@ -183,11 +184,16 @@ function OfferCard() {
         </div>
         <p className="mt-2 text-sm text-slate-500">Pagamento único · Sem mensalidade</p>
         <Button
-          type="button"
-          data-checkout-button
+          asChild
           className="mt-7 h-auto min-h-14 w-full rounded-xl bg-blue-600 px-6 py-4 text-sm font-extrabold uppercase text-white shadow-[0_16px_35px_rgba(37,99,235,0.24)] transition hover:-translate-y-0.5 hover:bg-blue-700 sm:text-base"
         >
-          Quero começar meu desafio <ArrowRight className="size-5" />
+          <a
+            href={CHECKOUT_URL || CHECKOUT_FALLBACK_URL}
+            data-checkout-button
+            data-checkout-configured={CHECKOUT_URL ? "true" : "false"}
+          >
+            Quero começar meu desafio <ArrowRight className="size-5" />
+          </a>
         </Button>
         <p className="mt-4 flex items-center justify-center gap-2 text-xs text-slate-500">
           <LockKeyhole className="size-4 text-emerald-600" /> Compra segura e acesso imediato
