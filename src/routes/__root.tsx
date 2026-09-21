@@ -141,6 +141,19 @@ function RootShell({ children }: { children: ReactNode }) {
               "!function(i,n){i._plt=i._plt||(n&&n.timeOrigin?n.timeOrigin+n.now():Date.now())}(window,performance);",
           }}
         />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: 'window.pixelId = "6aa07c56b6f5b38d986cf536";',
+          }}
+        />
+        <script src="https://cdn.utmify.com.br/scripts/pixel/pixel.js" async defer />
+        <script
+          src="https://cdn.utmify.com.br/scripts/utms/latest.js"
+          data-utmify-prevent-xcod-sck
+          data-utmify-prevent-subids
+          async
+          defer
+        />
         <HeadContent />
       </head>
       <body>

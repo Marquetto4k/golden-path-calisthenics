@@ -36,7 +36,13 @@ export function Hero({ showCallToAction = false }: { showCallToAction?: boolean 
                 data-checkout-button
                 data-checkout-configured={CHECKOUT_URL ? "true" : "false"}
               >
-                Quero começar agora <ArrowRight className="size-5" />
+                Quero começar agora
+                {CHECKOUT_URL && (
+                  <span className="sr-only" aria-hidden="true">
+                    checkout
+                  </span>
+                )}
+                <ArrowRight className="size-5" />
               </a>
             </Button>
           </div>
