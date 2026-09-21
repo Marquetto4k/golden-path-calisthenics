@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Hero, SimplifiedContent, UrgencyBanner } from "@/components/landing";
 
 const CONTENT_DELAY_SECONDS = 5 * 60 + 40;
+const CONTENT_UNLOCK_STORAGE_KEY = "calisthenia-sales-content-unlocked-v1";
 
 interface VturbPlayerInstance {
   on: (event: "timeupdate", callback: () => void) => void;
@@ -22,10 +23,31 @@ function getVturbPlayer() {
   return (window as Window & { smartplayer?: VturbSmartPlayer }).smartplayer?.instances?.[0];
 }
 
+function wasContentUnlocked() {
+  try {
+    return window.localStorage.getItem(CONTENT_UNLOCK_STORAGE_KEY) === "true";
+  } catch {
+    return false;
+  }
+}
+
+function rememberContentUnlock() {
+  try {
+    window.localStorage.setItem(CONTENT_UNLOCK_STORAGE_KEY, "true");
+  } catch {
+    // The delay still works when localStorage is unavailable, but it cannot persist.
+  }
+}
+
 function useDelayedContent() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
+    if (wasContentUnlocked()) {
+      setIsVisible(true);
+      return;
+    }
+
     let cancelled = false;
     let unlocked = false;
     let retryId: number | undefined;
@@ -35,6 +57,7 @@ function useDelayedContent() {
       if (cancelled || unlocked) return;
 
       unlocked = true;
+      rememberContentUnlock();
       setIsVisible(true);
     };
 
