@@ -1,14 +1,13 @@
 import {
   ArrowRight,
   BadgeCheck,
-  CalendarDays,
   Check,
   Clock3,
-  Dumbbell,
+  HeartPulse,
   LockKeyhole,
   MonitorSmartphone,
-  Sparkles,
-  StretchHorizontal,
+  MoonStar,
+  Salad,
 } from "lucide-react";
 
 import protocoloVitalidade from "@/assets/protocolo-vitalidade.webp";
@@ -29,8 +28,8 @@ const programItems = [
   "Aulas guiadas para executar cada movimento com segurança",
   "Progressões e adaptações pensadas para quem está começando",
   "Calendário visual para acompanhar sua evolução",
-  "Bônus: guia de mobilidade e alongamento 40+",
-  "Bônus: rotina matinal de ativação em 5 minutos",
+  "Timers individuais para acompanhar cada exercício",
+  "Checklist diário para registrar cada treino concluído",
 ];
 
 const transformations = [
@@ -66,24 +65,19 @@ const transformations = [
 
 const bonuses = [
   {
-    icon: StretchHorizontal,
-    title: "Mobilidade 40+",
-    text: "Uma rotina complementar para preparar o corpo e melhorar a qualidade dos movimentos.",
+    icon: MoonStar,
+    title: "Protocolo Anticortisol Noturno",
+    text: "Um passo a passo noturno com hábitos e exercícios leves para ajudar a relaxar, controlar o estresse e dormir melhor.",
   },
   {
-    icon: Sparkles,
-    title: "Ativação matinal",
-    text: "Uma sequência rápida de 5 minutos para começar o dia com o corpo desperto.",
+    icon: Salad,
+    title: "Cardápio Anti-inflamatório",
+    text: "Receitas simples e acessíveis para o dia a dia, com foco em alimentação equilibrada e apoio à redução de gordura.",
   },
   {
-    icon: CalendarDays,
-    title: "Calendário de evolução",
-    text: "Marque cada treino concluído e enxergue sua consistência durante os 28 dias.",
-  },
-  {
-    icon: Dumbbell,
-    title: "Guia de progressões",
-    text: "Adaptações simples para ajustar a intensidade ao seu nível atual.",
+    icon: HeartPulse,
+    title: "Guia do Desempenho Sexual",
+    text: "Orientações práticas de hábitos, treino e rotina para favorecer mais disposição, libido e confiança na vida íntima.",
   },
 ];
 
@@ -270,10 +264,10 @@ function BonusesBlock() {
       <div className="mx-auto max-w-3xl text-center">
         <SectionEyebrow>Mais do que os 28 treinos</SectionEyebrow>
         <h3 className="mt-4 text-3xl font-black text-slate-950 sm:text-4xl">
-          Você também recebe 4 bônus exclusivos
+          Você também recebe 3 bônus exclusivos
         </h3>
       </div>
-      <div className="mt-9 grid gap-4 sm:grid-cols-2">
+      <div className="mt-9 grid gap-4 lg:grid-cols-3">
         {bonuses.map(({ icon: Icon, title, text }, index) => (
           <article
             key={title}
