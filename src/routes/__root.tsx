@@ -103,6 +103,25 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap",
       },
+      {
+        rel: "preload",
+        href: "https://scripts.converteai.net/499bd2b5-e461-4778-b159-932ff532a394/players/6ab074c7d250b1dbcebbda11/v4/player.js",
+        as: "script",
+      },
+      {
+        rel: "preload",
+        href: "https://scripts.converteai.net/lib/js/smartplayer-wc/v4/smartplayer.js",
+        as: "script",
+      },
+      {
+        rel: "preload",
+        href: "https://cdn.converteai.net/499bd2b5-e461-4778-b159-932ff532a394/6ab0747880488426911f2e36/main.m3u8",
+        as: "fetch",
+      },
+      { rel: "dns-prefetch", href: "https://cdn.converteai.net" },
+      { rel: "dns-prefetch", href: "https://scripts.converteai.net" },
+      { rel: "dns-prefetch", href: "https://images.converteai.net" },
+      { rel: "dns-prefetch", href: "https://license.vturb.com" },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
     ],
   }),
@@ -116,6 +135,12 @@ function RootShell({ children }: { children: ReactNode }) {
   return (
     <html lang="pt-BR">
       <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "!function(i,n){i._plt=i._plt||(n&&n.timeOrigin?n.timeOrigin+n.now():Date.now())}(window,performance);",
+          }}
+        />
         <HeadContent />
       </head>
       <body>
