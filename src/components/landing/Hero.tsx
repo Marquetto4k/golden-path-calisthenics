@@ -1,6 +1,7 @@
-import { ArrowDown } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { CHECKOUT_FALLBACK_URL, CHECKOUT_URL } from "@/config/checkout";
 import { VSLPlayer } from "./VSLPlayer";
 
 export function Hero({ showCallToAction = false }: { showCallToAction?: boolean }) {
@@ -30,8 +31,12 @@ export function Hero({ showCallToAction = false }: { showCallToAction?: boolean 
               size="lg"
               className="mt-7 h-auto min-h-14 w-full rounded-xl bg-blue-600 px-8 py-4 text-sm font-extrabold uppercase text-white shadow-[0_16px_35px_rgba(37,99,235,0.24)] transition hover:-translate-y-0.5 hover:bg-blue-700 sm:w-auto sm:min-w-80 sm:text-base"
             >
-              <a href="#oferta">
-                Quero começar agora <ArrowDown className="size-5" />
+              <a
+                href={CHECKOUT_URL || CHECKOUT_FALLBACK_URL}
+                data-checkout-button
+                data-checkout-configured={CHECKOUT_URL ? "true" : "false"}
+              >
+                Quero começar agora <ArrowRight className="size-5" />
               </a>
             </Button>
           </div>
